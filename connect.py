@@ -1,25 +1,25 @@
 import psycopg2
 
-conec = None
-cur = None
+global conec
+global cur
 
 def conexion():
     try:
-        global conec
-        global cur
+        connect= None
+        cur= None
         conec = psycopg2.connect(host="localhost", database="consul_db", user="postgres", password="pass123")
         print("Conexión con base de datos establecida")
         cur = conec.cursor()
     except:
-        print("Error de conexión con base de datos")    
+        print("Error de conexión con base de datos")
 
 def consultar(sqlquery):
     cur.execute(sqlquery)
     return cur.fetchall()
 
 def modificar(sqlquery):
-    cur.execute(sqlquery) 
-    conec.commit()  
+    cur.execute(sqlquery)
+    conec.commit()
 
 def cerrar():
     try:
@@ -27,7 +27,7 @@ def cerrar():
         conec.close()
         print("Conexión con base de datos cerrada")
     except:
-        print("Error al cerrar conexión")    
+        print("Error al cerrar conexión")
 
 
 def llenado(largo):
