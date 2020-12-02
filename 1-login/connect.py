@@ -1,20 +1,22 @@
-import mysql.connector
+import pymysql
 
-global connect
-global cur
 
 def connection():
-    try:
-        mydb = mysql.connector.connect(
-          host="trabajoarqui.ddns.net",
-          database="arqui_kawaii",
-          user="arqui_kawaiiappuser",
-          password="kawaiiapp123"
-        )
+        con = pymysql.connect('167.86.114.135','arqui_kawaiiappuser','kawaiiapp123','arqui_kawaii')
+        # prepare a cursor object using cursor() method
+        try:
 
-        print(mydb)
-    except:
-        print("Error de conexión con base de datos")
+            with con.cursor() as cur:
+
+                cur.execute('SELECT VERSION()')
+
+                version = cur.fetchone()
+
+                print(f'Database version: {version[0]}')
+
+        finally:
+
+            con.close()
 
 def consultar(sqlquery):
     cur.execute(sqlquery)
