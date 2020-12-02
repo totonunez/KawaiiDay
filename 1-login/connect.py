@@ -1,15 +1,18 @@
-import psycopg2
+import mysql.connector
 
 global connect
 global cur
 
 def connection():
     try:
-        connect= None
-        cur= None
-        connect = psycopg2.connect(host="trabajoarqui.ddns.net", database="arqui_kawaii", user="arqui_kawaiiappuser", password="kawaiiapp123")
-        print("Conexión con base de datos establecida")
-        cur = connect.cursor()
+        mydb = mysql.connector.connect(
+          host="trabajoarqui.ddns.net",
+          database="arqui_kawaii",
+          user="arqui_kawaiiappuser",
+          password="kawaiiapp123"
+        )
+
+        print(mydb)
     except:
         print("Error de conexión con base de datos")
 

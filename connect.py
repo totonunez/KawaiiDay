@@ -1,17 +1,22 @@
-import psycopg2
+import pymysql
 
-global connect
-global cur
 
 def connection():
-    try:
-        connect= None
-        cur= None
-        connect = psycopg2.connect(host="localhost", database="kawaii_db", user="kawaiiapp", password="kawaii123")
-        print("Conexión con base de datos establecida")
-        cur = connect.cursor()
-    except:
-        print("Error de conexión con base de datos")
+        con = pymysql.connect('167.86.114.135','arqui_kawaiiappuser','kawaiiapp123','arqui_kawaii')
+        # prepare a cursor object using cursor() method
+        try:
+
+            with con.cursor() as cur:
+
+                cur.execute('SELECT VERSION()')
+
+                version = cur.fetchone()
+
+                print(f'Database version: {version[0]}')
+
+        finally:
+
+            con.close()
 
 def consultar(sqlquery):
     cur.execute(sqlquery)
@@ -42,5 +47,5 @@ connection()
 #y = modificar("insert into funcionarios(especialidad, rut, nombre) values ('Enfermero', '196443732', 'cristobal-urrutia')")
 #modificar("update funcionarios set rut = '123456789' where nombre = 'cristobal-castro'")
 #x = consultar("select * from funcionarios")
-cerrar()
+#cerrar()
 #print(x)
