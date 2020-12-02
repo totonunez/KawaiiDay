@@ -3,7 +3,7 @@ import psycopg2
 global connect
 global cur
 
-def conexion():
+def connection():
     try:
         connect= None
         cur= None
@@ -38,7 +38,7 @@ def llenado(largo):
     return aux
 
 
-conexion()
+connection()
 #y = modificar("insert into funcionarios(especialidad, rut, nombre) values ('Enfermero', '196443732', 'cristobal-urrutia')")
 #modificar("update funcionarios set rut = '123456789' where nombre = 'cristobal-castro'")
 #x = consultar("select * from funcionarios")
