@@ -7,7 +7,7 @@ def conexion():
     try:
         connect= None
         cur= None
-        conec = psycopg2.connect(host="localhost", database="consul_db", user="postgres", password="pass123")
+        conec = psycopg2.connect(host="localhost", database="kawaii_db", user="kawaiiapp", password="kawaii123")
         print("Conexión con base de datos establecida")
         cur = conec.cursor()
     except:
