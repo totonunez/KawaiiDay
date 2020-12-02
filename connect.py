@@ -1,15 +1,15 @@
 import psycopg2
 
-global conec
+global connect
 global cur
 
 def conexion():
     try:
         connect= None
         cur= None
-        conec = psycopg2.connect(host="localhost", database="kawaii_db", user="kawaiiapp", password="kawaii123")
+        connect = psycopg2.connect(host="localhost", database="kawaii_db", user="kawaiiapp", password="kawaii123")
         print("Conexión con base de datos establecida")
-        cur = conec.cursor()
+        cur = connect.cursor()
     except:
         print("Error de conexión con base de datos")
 
@@ -19,12 +19,12 @@ def consultar(sqlquery):
 
 def modificar(sqlquery):
     cur.execute(sqlquery)
-    conec.commit()
+    connect.commit()
 
 def cerrar():
     try:
         cur.close()
-        conec.close()
+        connect.close()
         print("Conexión con base de datos cerrada")
     except:
         print("Error al cerrar conexión")
