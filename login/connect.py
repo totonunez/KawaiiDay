@@ -12,7 +12,7 @@ def connection():
 
                 version = cur.fetchone()
 
-                print(f'Database version: {version[0]}')
+                print("Database version: .'version[0]'.")
 
         finally:
 
