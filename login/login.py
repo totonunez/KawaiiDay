@@ -5,11 +5,11 @@ from connect import *
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(("localhost", 5000))
 sock.send(bytes('00010sinitlogin'))
-recibido=s.recv(4096)
+recibido=sock.recv(4096)
 print(recibido)
 
 while True:
-    datos = s.recv(4096)
+    datos = sock.recv(4096)
     if datos.decode('utf-8').find('login'):
         #decodificar el mensaje
         datos = datos[10:]
