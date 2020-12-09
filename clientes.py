@@ -71,7 +71,7 @@ while True:
 	\n""")
 
     if(opcion == '2'):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'registrar consulta'")
         s.send(bytes('00010getsvaddco','utf-8'))
 
@@ -119,7 +119,7 @@ while True:
         print(recibido[12:])
 
     if(opcion == '3'):
-        # se debe estar con sesión iniciada de entes, luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes, luego mover esto al if de op 1
         print("Ha seleccionado la opcion: 'solicitar consulta': \n")
         s.send(bytes('00010getsvconpa')
 
@@ -170,7 +170,7 @@ while True:
         print(recibido[12:])
 
     if(opcion == "5"):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar paciente en lista de espera'")
         s.send(bytes('00010getsvconli')
 
@@ -194,7 +194,7 @@ while True:
 
 
     if(opcion == "6"):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'registrar orden de examen': \n" )
         s.send(bytes('00010getsvaddex','utf-8'))
 
@@ -227,7 +227,7 @@ while True:
 
 
     if(opcion == "7"):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar orden de examen': \n")
         s.send(bytes('00010getsvconex','utf-8'))
 
@@ -251,7 +251,7 @@ while True:
 
 
     if(opcion == "8"):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'registrar diagnostico de paciente'")
         s.send(bytes('00010getsvadddi','utf-8'))
 
@@ -277,7 +277,7 @@ while True:
 
 
     if(opcion == "9"):
-        # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
+        # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar diagnostico de paciente'")
         s.send(bytes('00010getsvcodig','utf-8'))
 
