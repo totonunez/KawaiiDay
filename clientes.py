@@ -112,7 +112,7 @@ while True:
         datos = name + " " + rut + " " + date + " " + hora + " " + prev
         temp = llenado(len(datos+'addco'))
         mensaje = temp + 'addco' + datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
 
@@ -121,9 +121,7 @@ while True:
     if(opcion == '3'):
         # se debe estar con sesion iniciada de entes, luego mover esto al if de op 1
         print("Ha seleccionado la opcion: 'solicitar consulta': \n")
-        s.send(bytes('00010getsvconpa')
-
-        #ingreso de dato
+        s.send(bytes('00010getsvconpa'))
 
         datos = input("Escribir rut de paciente ( formato: 11111111): \n")
         # verificacion del dato
@@ -141,7 +139,7 @@ while True:
 
     if(opcion =="4"):
         print("Ha seleccionado 'registrar funcionario':  \n")
-        s.send(bytes('00010getsvsupfu')
+        s.send(bytes('00010getsvsupfu'))
 
 
         #ingreso de valores
@@ -162,7 +160,7 @@ while True:
         datos = name +" "+ rut + " " + esp
         temp = llenado(len(datos+'supfu'))
         mensaje = temp+'supfu'+datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
 
         recibido = s.recv(4096)
@@ -172,7 +170,7 @@ while True:
     if(opcion == "5"):
         # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar paciente en lista de espera'")
-        s.send(bytes('00010getsvconli')
+        s.send(bytes('00010getsvconli'))
 
 
 
@@ -196,7 +194,7 @@ while True:
     if(opcion == "6"):
         # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'registrar orden de examen': \n" )
-        s.send(bytes('00010getsvaddex','utf-8'))
+        s.send(bytes('00010getsvaddex'))
 
 
         #ingreso de valores
@@ -216,7 +214,7 @@ while True:
         datos = hora + " " + rut + " " + ex
         temp = llenado(len(datos+'addex'))
         mensaje = temp + 'addex' + datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         print(recibido[12:])
@@ -240,7 +238,7 @@ while True:
         #creacion del mensaje a enviar
         temp = llenado(len(datos+'conex'))
         mensaje = temp + 'conex' + datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         print(recibido[12:])
@@ -253,7 +251,7 @@ while True:
     if(opcion == "8"):
         # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'registrar diagnostico de paciente'")
-        s.send(bytes('00010getsvadddi','utf-8'))
+        s.send(bytes('00010getsvadddi'))
 
         #ingreso de datos
         sintomas = input("Escribir sintomas  (formato: sintoma1sin-toma2-sintoma3... : )")
@@ -268,7 +266,7 @@ while True:
         datos = sintomas + ";" + diagnostico + ";" + comentarios + ";" + idDiagnostico + ";" + rutAux
         temp = llenado(len(datos+'adddi'))
         mensaje = temp + 'adddi' + datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         print(recibido[29:].decode())
@@ -279,7 +277,7 @@ while True:
     if(opcion == "9"):
         # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar diagnostico de paciente'")
-        s.send(bytes('00010getsvcodig','utf-8'))
+        s.send(bytes('00010getsvcodig'))
 
         #ingreso de valores
         datos = input("Escribir rut de paciente (formato: 11111111): \n")
@@ -289,7 +287,7 @@ while True:
         #crear mensaje
         temp = llenado(len(datos+'codig'))
         mensaje = temp + 'codig' + datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         recibido = recibido[29:].decode()
@@ -329,7 +327,7 @@ while True:
             print(recibido)
 
     if(opcion == "0"):
-        s.send(bytes('quit','utf-8'))
+        s.send(bytes('quit'))
         time.sleep(5)
         break
 
