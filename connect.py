@@ -30,9 +30,9 @@ def cerrar():
     try:
         cur.close()
         connect.close()
-        print("Conexión con base de datos cerrada")
+        print("Conexion con base de datos cerrada")
     except:
-        print("Error al cerrar conexión")
+        print("Error al cerrar conexion")
 
 
 def llenado(largo):
