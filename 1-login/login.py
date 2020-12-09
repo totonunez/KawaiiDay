@@ -1,11 +1,10 @@
 import socket
 from connect import *
-#query de la consulta de un paciente mediante rut
 
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("localhost", 5000))
-s.send(bytes('00010sinitlogin','utf-8'))
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(("localhost", 5000))
+sock.send(bytes('00010sinitlogin','utf-8'))
 recibido=s.recv(4096)
 print(recibido)
 
