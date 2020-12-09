@@ -152,7 +152,7 @@ while True:
         i = int(input("opcion: "))
         esp = especialidad[i]
 
-        #verificación de los valores
+        #verificacion de los valores
         name = nombre.replace(" ", "_")
 
 
@@ -176,7 +176,7 @@ while True:
 
         #ingreso de valores
 
-        #verificación de los valores
+        #verificacion de los valores
 
 
 
@@ -206,7 +206,7 @@ while True:
 
         i = int(input("opcion: "))
         ex = examenes[i]
-        #verificación de los valores
+        #verificacion de los valores
 
 
 
