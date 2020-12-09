@@ -17,10 +17,7 @@ recibido = s.recv(4096)
 rutAux = ""
 
 while True:
-    opcion = input("""Que servicio desea:
-	1.- iniciar sesion funcionario
-    0.- salir
-	\n""")
+    opcion = input()
 
     if(opcion == "1"):
         print("Ha seleccionado la opcion 'iniciar sesion de funcionario '")
