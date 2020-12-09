@@ -36,11 +36,11 @@ while True:
 
         #verificacion de valores
 
-        #construcción del mensaje a enviar
+        #construccion del mensaje a enviar
         datos = rut + " "+ esp
         temp = llenado(len(datos+'login'))
         mensaje = temp +'login'+ datos
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         print(recibido[12:])
