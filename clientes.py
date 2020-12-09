@@ -10,7 +10,7 @@ previsiones = ["fonasa", "colmena", "avansalud", "banmedica" , "otro"]
 #conexion de socket cliente
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(("localhost", 5000))
+s.connect("localhost", 5000)
 s.send(bytes('00005getsv'))
 recibido = s.recv(4096)
 
@@ -18,13 +18,13 @@ rutAux = ""
 
 while True:
     opcion = input("""Que servicio desea:
-	1.- iniciar sesión funcionario
+	1.- iniciar sesion funcionario
     0.- salir
 	\n""")
 
     if(opcion == "1"):
-        print("Ha seleccionado la opcion 'iniciar sesión de funcionario '")
-        s.send(bytes('00010getsvlogin','utf-8'))
+        print("Ha seleccionado la opcion 'iniciar sesion de funcionario '")
+        s.send(bytes('00010getsvlogin'))
 
         #singreso de valores
         rut = input("escriba su rut (formato: 12345678): ")
@@ -121,7 +121,7 @@ while True:
     if(opcion == '3'):
         # se debe estar con sesión iniciada de entes, luego mover esto al if de op 1
         print("Ha seleccionado la opcion: 'solicitar consulta': \n")
-        s.send(bytes('00010getsvconpa','utf-8'))
+        s.send(bytes('00010getsvconpa')
 
         #ingreso de dato
 
@@ -141,7 +141,7 @@ while True:
 
     if(opcion =="4"):
         print("Ha seleccionado 'registrar funcionario':  \n")
-        s.send(bytes('00010getsvsupfu','utf-8'))
+        s.send(bytes('00010getsvsupfu')
 
 
         #ingreso de valores
@@ -172,7 +172,7 @@ while True:
     if(opcion == "5"):
         # se debe estar con sesión iniciada de entes , luego mover esto al if de op 1
         print("Ha seleccionado 'consultar paciente en lista de espera'")
-        s.send(bytes('00010getsvconli','utf-8'))
+        s.send(bytes('00010getsvconli')
 
 
 
@@ -187,7 +187,7 @@ while True:
         temp = llenado(len('conli'))
         mensaje = temp + 'conli' + 'consultar_lista'
         print(mensaje)
-        s.send(bytes(mensaje,'utf-8'))
+        s.send(bytes(mensaje))
         recibido = s.recv(4096)
         recibido = s.recv(4096)
         print(recibido[12:])
