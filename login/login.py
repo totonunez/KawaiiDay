@@ -4,7 +4,7 @@ from connect import *
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(("localhost", 5000))
-sock.send(bytes('00010sinitlogin','utf-8'))
+sock.send(bytes('00010sinitlogin'))
 recibido=s.recv(4096)
 print(recibido)
 
