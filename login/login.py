@@ -40,7 +40,7 @@ while True:
         temp=llenado(len(respuesta2))
         print('tmp: ', temp)
         print('tmp + respuesta:',temp+respuesta2)
-        s.send(bytes(temp+respuesta2,'utf-8'))
+        sock.send(bytes(temp+respuesta2))
 
 
 
