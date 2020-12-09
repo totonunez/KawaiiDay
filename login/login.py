@@ -3,7 +3,7 @@ from connect import *
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect(("localhost", 5000))
+sock.connect(("200.14.84.235", 5000))
 sock.send(bytes('00010sinitlogin','utf-8'))
 recibido=s.recv(4096)
 print(recibido)
@@ -20,7 +20,7 @@ while True:
         n = []
 
 
-        consulta = f"SELECT  funcionarios.rut, funcionarios.especialidad FROM funcionarios WHERE funcionarios.rut = '{data[0]}' AND funcionarios.especialidad = '{data[1]}'"
+        consulta = "SELECT  funcionarios.rut, funcionarios.especialidad FROM funcionarios WHERE funcionarios.rut = '{data[0]}' AND funcionarios.especialidad = '{data[1]}'"
         respuesta = consultar(consulta)
         print(respuesta)
 
