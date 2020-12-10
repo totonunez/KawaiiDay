@@ -13,50 +13,37 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("localhost", 5000))
 s.send(bytes('00005getsv'))
 recibido = s.recv(4096)
+print("mira papu")
+print(recibido)
+print("mira papu")
 
 rutAux = ""
 
 while True:
-    opcion = int(input("opcion: "))
+    s.send(bytes('00010getsvlogin'))
+    rut = str(raw_input("escriba su rut sin puntos ni guion:"))
+    password = str(raw_input("password:"))
+    #verificacion de valores
+    #construccion del mensaje a enviar
+    datos = str(rut) +" "+ str(password)
+    temp = llenado(len(str(datos)+'login'))
+    mensaje = str(temp) +'login'+ str(datos)
+    s.send(bytes(mensaje))
+    recibido = s.recv(4096)
+    recibido = s.recv(4096)
 
-    if(opcion === "1"):
-        print("Ha seleccionado la opcion iniciar sesion de funcionario ")
-        s.send(bytes('00010getsvlogin'))
+    print(recibido[15:])
 
-        #singreso de valores
-        rut = input("escriba su rut (formato: 12345678): ")
-        print("escoja El NUMERO de su especialidad: \n")
-        for x in range(0,len(especialidad)):
-            print(str(x) + " " + especialidad[x])
-        i = int(input("opcion: "))
-        esp = especialidad[i]
-
-        #verificacion de valores
-
-        #construccion del mensaje a enviar
-        datos = rut + " "+ esp
-        temp = llenado(len(datos+'login'))
-        mensaje = temp +'login'+ datos
-        s.send(bytes(mensaje))
-        recibido = s.recv(4096)
-        recibido = s.recv(4096)
-        print(recibido[12:])
-        recibido = recibido[12:].decode()
-        if recibido != "no_existe_usuario":
-            rutAux = rut
-            break
-    if opcion == "0":
+    recibido = recibido[15:].decode()
+    if recibido != "not_user":
+        rutAux = rut
         break
 
 #interfaz
 while True:
-    if opcion == "0":
-        s.send(bytes('quit','utf-8'))
-        time.sleep(5)
-        break
 
-    opcion = input("""Que servicio desea:
-	2.- registrar  consulta
+    opcion = int(raw_input("""Que servicio desea:
+	2.- registrar  evento
 	3.- solicitar  consulta por rut de paciente
 	4.- registrar funcionario de salud
     5.- consulta de lista de espera
@@ -65,62 +52,41 @@ while True:
     8.- registrar diagnostico de paciente
     9.- solicitar diagnostico de paciente
     0.- salir
-	\n""")
+	\n"""))
 
-    if(opcion == '2'):
+    if(opcion == 2):
         # se debe estar con sesion iniciada de entes , luego mover esto al if de op 1
-        print("Ha seleccionado 'registrar consulta'")
-        s.send(bytes('00010getsvaddco','utf-8'))
-
-
-        #ingresar dato
-
-        nombre = input("escriba su nombre completo separados por espacios: \n ")
-
-
-        rut = input("escriba su rut (formato: 11111111): \n ")
-
-        fecha = input("escriba fecha  de la consulta (formato: dd/mm/aaaa): \n ")
-
-        hora = input("escriba hora de la consulta (formato: hh:mm): \n ")
-
-        print("escoja El NUMERO de su prevision de salud: \n")
-        for x in range(0,len(previsiones)):
-            print(str(x)+ " "+ previsiones[x])
-
-        i = int(input("opcion: "))
-        prev = previsiones[i]
-
-
-
-
-
+        print("Ha seleccionado registrar evento")
+        s.send(bytes('00010getsvaddev'))
+        print("papuuuuu")
+        print(s.recv(4096))
+        namae = raw_input("Escriba nombre del evento: ")
+        fechita = raw_input("escriba fecha  de la consulta (formato: dd/mm/aaaa): ")
+        lat = raw_input("ingrese latitud del evento: ")
+        lng = raw_input("ingrese longitud del evento: ")
 
         #verificacion de valores:
-        name = nombre.replace(" ", "_")
-        date = fecha.replace("/","-")
-        date = datetime.datetime.strptime(date, '%d-%m-%Y').strftime('%Y-%m-%d')
-
-
-
+        name = namae.replace(" ", "_")
+        date = fechita.replace("/","")
+        #date = datetime.datetime.strptime(date, '%d%m%Y').strftime('%d-%m-%Y')
 
         #creacion del mensaje
 
-        datos = name + " " + rut + " " + date + " " + hora + " " + prev
-        temp = llenado(len(datos+'addco'))
-        mensaje = temp + 'addco' + datos
+        datos = str(lat) + " " + str(lng) + " " + str(name)
+        temp = llenado(len(datos+'addev'))
+        mensaje = str(temp) + 'addev' + str(datos)
         s.send(bytes(mensaje))
         recibido = s.recv(4096)
-        recibido = s.recv(4096)
 
-        print(recibido[12:])
+
+        print(recibido[14:])
 
     if(opcion == '3'):
         # se debe estar con sesion iniciada de entes, luego mover esto al if de op 1
         print("Ha seleccionado la opcion: 'solicitar consulta': \n")
         s.send(bytes('00010getsvconpa'))
 
-        datos = input("Escribir rut de paciente ( formato: 11111111): \n")
+        datos = raw_input("Escribir rut de paciente ( formato: 11111111): \n")
         # verificacion del dato
 
 
@@ -140,13 +106,13 @@ while True:
 
 
         #ingreso de valores
-        nombre = input("escriba su nombre completo separados por espacios: \n ")
-        rut = input("escriba su rut (formato: 12345678): ")
+        nombre = raw_input("escriba su nombre completo separados por espacios: \n ")
+        rut = raw_input("escriba su rut (formato: 12345678): ")
         print("escoja El NUMERO de su especialidad: \n")
         for x in range(0,len(especialidad)):
             print(str(x)+ " "+ especialidad[x])
 
-        i = int(input("opcion: "))
+        i = int(raw_input("opcion: "))
         esp = especialidad[i]
 
         #verificacion de los valores
@@ -329,4 +295,4 @@ while True:
         break
 
 print("ha cerrado terminal")
-s.close()
+#s.close()

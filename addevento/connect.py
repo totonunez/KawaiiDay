@@ -5,30 +5,33 @@ def connection():
 
         # prepare a cursor object using cursor() method
         try:
-
             with con.cursor() as cur:
-
                 cur.execute('SELECT VERSION()')
-
                 version = cur.fetchone()
-
-                print('Database version:')
-
+                print("Database version: .'version[0]'.")
         finally:
-
-            con.close()
+            print("conectado")
 
 def consultar(sqlquery):
-    con.cursor().execute(sqlquery)
-    return cur.fetchall()
+        try:
+            with con.cursor() as cur:
+                cur.execute(sqlquery)
+                return cur.fetchall()
+        finally:
+            print("conectado")
+
 
 def modificar(sqlquery):
-    con.cursor().execute(sqlquery)
-    connect.commit()
+        try:
+            with con.cursor() as cur:
+                cur.execute(sqlquery)
+        finally:
+            con.commit()
+
 
 def cerrar():
     try:
-        con.cursor().close()
+        con.close()
         connect.close()
         print("Conexion con base de datos cerrada")
     except:
@@ -38,14 +41,9 @@ def cerrar():
 def llenado(largo):
     aux = str(largo)
     while len(aux) < 5:
-        aux = '0' + str(aux)
+        aux = '0' + aux
     print(aux)
     return aux
 
 
 connection()
-#y = modificar("insert into funcionarios(especialidad, rut, nombre) values ('Enfermero', '196443732', 'cristobal-urrutia')")
-#modificar("update funcionarios set rut = '123456789' where nombre = 'cristobal-castro'")
-#x = consultar("select * from funcionarios")
-#cerrar()
-#print(x)
