@@ -19,38 +19,19 @@ while True:
         r = []
         n = []
 
-
-        consulta = "SELECT  funcionarios.rut, funcionarios.especialidad FROM funcionarios WHERE funcionarios.rut = '{data[0]}' AND funcionarios.especialidad = '{data[1]}'"
+        consulta = "SELECT * FROM usuarios WHERE usuarios.rut = {} AND usuarios.pass = {}".format(data[0],data[1])
         respuesta = consultar(consulta)
         print(respuesta)
-
-        #si el usuario no esta
-
-        if len(respuesta )!= 0:
-            for rut,nombre in respuesta:
+        if len(respuesta)!= 0:
+            for rut in respuesta:
                 r.append(rut)
-                n.append(nombre)
-            respuesta2='login'+r[0]+n[0]
-
-        #si ta
+            respuesta2='login'+str(r[0])
         else:
-            respuesta2 = 'login' + "no_existe_usuario"
+                respuesta2 = "Usuario_no_existe"
 
         print(respuesta2)
         temp=llenado(len(respuesta2))
-        print('tmp: ', temp)
-        print('tmp + respuesta:',temp+respuesta2)
         sock.send(bytes(temp+respuesta2))
-
-
-
-
-        #realizar la operacion de buscar en la bd
-
-
-
-        #crear mensaje de respuesta
-        print("envia3")
     else:
         pass
 

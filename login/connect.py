@@ -1,34 +1,33 @@
 import pymysql
 
-
+con = pymysql.connect('167.86.114.135','arqui_kawaiiappuser','kawaiiapp123','arqui_kawaii')
 def connection():
-        con = pymysql.connect('167.86.114.135','arqui_kawaiiappuser','kawaiiapp123','arqui_kawaii')
+
         # prepare a cursor object using cursor() method
         try:
-
             with con.cursor() as cur:
-
                 cur.execute('SELECT VERSION()')
-
                 version = cur.fetchone()
-
                 print("Database version: .'version[0]'.")
-
         finally:
-
-            con.close()
+            print("conectado")
 
 def consultar(sqlquery):
-    cur.execute(sqlquery)
-    return cur.fetchall()
+        try:
+            with con.cursor() as cur:
+                cur.execute(sqlquery)
+                return cur.fetchall()
+        finally:
+            print("conectado")
+
 
 def modificar(sqlquery):
-    cur.execute(sqlquery)
+    con.execute(sqlquery)
     connect.commit()
 
 def cerrar():
     try:
-        cur.close()
+        con.close()
         connect.close()
         print("Conexion con base de datos cerrada")
     except:
