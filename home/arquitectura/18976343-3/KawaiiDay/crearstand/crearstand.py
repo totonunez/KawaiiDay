@@ -1,0 +1,26 @@
+import socket
+from connect import *
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("localhost",5000))
+s.send(bytes('00010sinitaddst'))
+recibido = s.recv(4096)
+print(recibido)
+while 1:
+    datos = s.recv(4096)
+    if 'addst' in datos.decode('utf-8'):
+        datos = datos[10:]
+        target = datos.decode()
+        data = target.split()
+        consulta = "INSERT INTO stands (nombre) VALUES('%s');"%(data[0])
+        respuesta = consultar(consulta)
+
+        if respuesta == None:
+            respuesta = "Stand Creado!"
+            print(respuesta)
+            pass
+
+    else:
+        pass
+
+#s.close()

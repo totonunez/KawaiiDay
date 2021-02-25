@@ -19,7 +19,7 @@ rutAux = ""
 while True:
     opcion = int(input("opcion: "))
 
-    if(opcion === "1"):
+    if(opcion == 1):
         print("Ha seleccionado la opcion iniciar sesion de funcionario ")
         s.send(bytes('00010getsvlogin'))
 
